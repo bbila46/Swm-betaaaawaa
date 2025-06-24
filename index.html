@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SWM Summer Cases</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css" />
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SWM Summer Cases</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <div id="welcomeScreen" class="screen active">
@@ -26,6 +26,7 @@
       <h2><i class="fas fa-folder-open"></i> Today's Case Folder</h2>
       <div id="greeting"></div>
     </header>
+
     <main class="folder-layout">
       <section class="letter case-letter">
         <h3><i class="fas fa-file-medical"></i> CASE FILE: Unconscious Patient</h3>
@@ -38,14 +39,14 @@
     </main>
 
     <section class="feedback-section">
-      <label for="diagnosisInput">📝 Please submit your diagnosis:</label>
-      <textarea id="diagnosisInput" placeholder="Enter your diagnosis here..."></textarea>
-      <button id="submitDiagnosisBtn">Submit</button>
-    </section>
-
-    <section class="responses-section">
-      <h3><i class="fas fa-users"></i> Responded Diagnoses Today:</h3>
-      <ul id="responsesList"></ul>
+      <form action="https://formsubmit.co/bela74028@gmail.com" method="POST" onsubmit="return handleSubmission();">
+        <label for="diagnosisInput">📝 Please submit your diagnosis:</label>
+        <textarea id="diagnosisInput" name="diagnosis" required placeholder="Enter your diagnosis here..."></textarea>
+        <input type="hidden" id="userNameField" name="name" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <button id="submitDiagnosisBtn" type="submit">Submit</button>
+      </form>
     </section>
   </div>
 
