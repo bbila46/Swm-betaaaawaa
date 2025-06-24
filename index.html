@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SWM Case Interface</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Merriweather&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SWM Summer Cases</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="container">
+  <div id="welcomeScreen" class="screen active">
+    <div class="welcome-container">
+      <h1>🌼 Welcome to SWM – Summer Edition Cases 🌼</h1>
+      <p>Here, you'll uncover daily cases from our hospital archives.<br/>
+      Open the case, study the report and analysis, and submit your diagnosis.<br/>
+      <strong>Your insight matters.</strong></p>
+      <label for="userNameInput" class="name-label">👤 Please insert your name to begin:</label>
+      <input type="text" id="userNameInput" placeholder="Enter your name" autocomplete="off" />
+      <button id="registerBtn">Register & Continue</button>
+    </div>
+  </div>
+
+  <div id="caseScreen" class="screen">
     <header>
-      <img src="assets/folder-icon.svg" alt="Open Folder" id="openFolder" class="folder-icon"/>
-      <h1>📁 Open SWM Today's Case</h1>
+      <h2><i class="fas fa-folder-open"></i> Today's Case Folder</h2>
+      <div id="greeting"></div>
     </header>
+    <main class="folder-layout">
+      <section class="letter case-letter">
+        <h3><i class="fas fa-file-medical"></i> CASE FILE: Unconscious Patient</h3>
+        <p>Patient Ava Reynolds (26) was found unconscious in the hospital restroom at 08:42. No ID found. CPR performed for 2 minutes. Currently in ICU under monitoring.</p>
+      </section>
+      <section class="letter analysis-letter">
+        <h3><i class="fas fa-notes-medical"></i> MEDICAL ANALYSIS</h3>
+        <p>Likely cause: blunt force trauma or possible undiagnosed neurological condition. Pupils non-reactive. Staff reports indicate potential foul play. MRI pending.</p>
+      </section>
+    </main>
 
-    <section id="caseSection" class="hidden">
-      <div class="case-date">
-        <span>📅 Case opened on: <strong id="caseDate"></strong></span>
-        <span class="status-tag">Status: Active</span>
-      </div>
+    <section class="feedback-section">
+      <label for="diagnosisInput">📝 Please submit your diagnosis:</label>
+      <textarea id="diagnosisInput" placeholder="Enter your diagnosis here..."></textarea>
+      <button id="submitDiagnosisBtn">Submit</button>
+    </section>
 
-      <div class="folder-layout">
-        <article class="letter case-letter">
-          <h2>CASE: Unconscious Patient in Restroom</h2>
-          <p id="caseText"></p>
-        </article>
-
-        <article class="letter analysis-letter">
-          <h2>DOCTOR'S ANALYSIS</h2>
-          <p id="analysisText"></p>
-        </article>
-      </div>
-
-      <div class="feedback-section">
-        <label for="diagnosis">📝 Please write your opinion about your diagnosis:</label>
-        <textarea id="diagnosis" placeholder="Enter your diagnosis..."></textarea>
-        <button onclick="submitDiagnosis()">Submit</button>
-        <div id="userFeedback"></div>
-      </div>
+    <section class="responses-section">
+      <h3><i class="fas fa-users"></i> Responded Diagnoses Today:</h3>
+      <ul id="responsesList"></ul>
     </section>
   </div>
 
