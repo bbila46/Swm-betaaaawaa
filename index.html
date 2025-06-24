@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SWM Case Interface</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Merriweather&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="assets/folder-icon.svg" alt="Open Folder" id="openFolder" class="folder-icon"/>
+      <h1>📁 Open SWM Today's Case</h1>
+    </header>
+
+    <section id="caseSection" class="hidden">
+      <div class="case-date">
+        <span>📅 Case opened on: <strong id="caseDate"></strong></span>
+        <span class="status-tag">Status: Active</span>
+      </div>
+
+      <div class="folder-layout">
+        <article class="letter case-letter">
+          <h2>CASE: Unconscious Patient in Restroom</h2>
+          <p id="caseText"></p>
+        </article>
+
+        <article class="letter analysis-letter">
+          <h2>DOCTOR'S ANALYSIS</h2>
+          <p id="analysisText"></p>
+        </article>
+      </div>
+
+      <div class="feedback-section">
+        <label for="diagnosis">📝 Please write your opinion about your diagnosis:</label>
+        <textarea id="diagnosis" placeholder="Enter your diagnosis..."></textarea>
+        <button onclick="submitDiagnosis()">Submit</button>
+        <div id="userFeedback"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
