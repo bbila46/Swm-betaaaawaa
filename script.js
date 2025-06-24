@@ -5,26 +5,19 @@ const userNameInput = document.getElementById('userNameInput');
 const greeting = document.getElementById('greeting');
 const submitDiagnosisBtn = document.getElementById('submitDiagnosisBtn');
 const diagnosisInput = document.getElementById('diagnosisInput');
-const responsesList = document.getElementById('responsesList');
+const userNameField = document.getElementById('userNameField');
 
 let userName = '';
-let responses = [];
+let hasSubmitted = localStorage.getItem('swmHasSubmitted') === 'true';
 
-// Load from localStorage if available
-if(localStorage.getItem('swmUserName')){
+if (localStorage.getItem('swmUserName')) {
   userName = localStorage.getItem('swmUserName');
   showCaseScreen();
 }
 
-if(localStorage.getItem('swmResponses')){
-  responses = JSON.parse(localStorage.getItem('swmResponses'));
-  renderResponses();
-}
-
-// Register user and continue
 registerBtn.addEventListener('click', () => {
   const name = userNameInput.value.trim();
-  if(name.length < 2){
+  if (name.length < 2) {
     alert('Please enter a valid name.');
     return;
   }
@@ -33,37 +26,37 @@ registerBtn.addEventListener('click', () => {
   showCaseScreen();
 });
 
-// Show case folder screen
-function showCaseScreen(){
+function showCaseScreen() {
   welcomeScreen.classList.remove('active');
   caseScreen.classList.add('active');
   greeting.textContent = `Hello, ${userName}!`;
-  diagnosisInput.value = '';
-  diagnosisInput.focus();
+  userNameField.value = userName;
+
+  if (hasSubmitted) {
+    diagnosisInput.disabled = true;
+    submitDiagnosisBtn.disabled = true;
+    submitDiagnosisBtn.textContent = 'Already Submitted';
+  }
 }
 
-// Submit diagnosis
-submitDiagnosisBtn.addEventListener('click', () => {
+function handleSubmission() {
   const diagnosis = diagnosisInput.value.trim();
-  if(diagnosis.length < 3){
-    alert('Please enter a diagnosis before submitting.');
-    diagnosisInput.focus();
-    return;
+  if (diagnosis.length < 3) {
+    alert("Please enter a diagnosis before submitting.");
+    return false;
   }
-  // Save diagnosis with user name
-  responses.push({ name: userName, diagnosis });
-  localStorage.setItem('swmResponses', JSON.stringify(responses));
-  renderResponses();
-  diagnosisInput.value = '';
-  alert('Thank you for your submission!');
-});
 
-// Render list of responses
-function renderResponses(){
-  responsesList.innerHTML = '';
-  responses.forEach(resp => {
-    const li = document.createElement('li');
-    li.textContent = `${resp.name} – "${resp.diagnosis}"`;
-    responsesList.appendChild(li);
-  });
+  if (hasSubmitted) {
+    alert("You’ve already submitted your diagnosis.");
+    return false;
+  }
+
+  localStorage.setItem('swmHasSubmitted', 'true');
+  hasSubmitted = true;
+
+  diagnosisInput.disabled = true;
+  submitDiagnosisBtn.disabled = true;
+  submitDiagnosisBtn.textContent = "Already Submitted";
+
+  return true; // allow form to send
 }
